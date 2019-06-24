@@ -163,3 +163,8 @@ we extract the second column that is the actual text*
 	fa-check-circle-o to fa-check-circle
 	fa-square-o to fa-square
 	fa-circle-o-notch to fa-circle-notch
+
+
+### Vlc command to convert video file into flac file
+
+    vlc -I dummy 56336_Commencing_the_1st_week.mp4 ":sout=#transcode{vcodec=none,acodec=flac,ab=128,channels=1,samplerate=16000,scodec=none}:file{dst='/home/nagaraju/56336_Commencing_the_1st_week.flac',no-overwrite}" vlc://quit
