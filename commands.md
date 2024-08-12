@@ -170,5 +170,5 @@ we extract the second column that is the actual text*
     vlc -I dummy 56336_Commencing_the_1st_week.mp4 ":sout=#transcode{vcodec=none,acodec=flac,ab=128,channels=1,samplerate=16000,scodec=none}:file{dst='/home/nagaraju/56336_Commencing_the_1st_week.flac',no-overwrite}" vlc://quit
 
 ### combine multiple zip files that are split by Google Drive
-mkdir combined
-unzip '*.zip' -d combined
+    mkdir combined
+    unzip '*.zip' -d combined
