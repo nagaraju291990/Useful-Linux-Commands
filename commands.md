@@ -172,3 +172,6 @@ we extract the second column that is the actual text*
 ### combine multiple zip files that are split by Google Drive
     mkdir combined
     unzip '*.zip' -d combined
+
+### rsync between two folders excluding some files
+    rsync -avz --exclude='morph.log' --exclude='morph_output' --exclude='in.txt'  source_dir/ user@remote:/var/www/html/source_dir
