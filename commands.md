@@ -175,3 +175,35 @@ we extract the second column that is the actual text*
 
 ### rsync between two folders excluding some files
     rsync -avz --exclude='morph.log' --exclude='morph_output' --exclude='in.txt'  source_dir/ user@remote:/var/www/html/source_dir
+
+
+
+## Process to set up monitor of deleting files
+
+### Install Audit
+	sudo apt install auditd audispd-plugins
+
+### Start and enable the service:
+	sudo systemctl start auditd
+    sudo systemctl enable auditd
+
+### Create an audit rule for the directory you want to monitor: For example, to monitor file deletions in /var/www/html:
+    sudo auditctl -w /var/www/html/ -p wxa -k file_deletion_monitor
+
+### or add in below file permanently
+    vim /etc/audit/rules.d/audit.rules
+	sudo systemctl restart auditd
+
+	-w /var/www/html/: Watches the directory.
+    -p wxa: Monitors write, execute, and attribute changes.
+    -k file_deletion_monitor: Sets a key for easy searching in audit logs.
+
+### to view deleted files
+    sudo ausearch -k file_deletion_monitor -i
+	sudo ausearch -k file_deletion_monitor -i | grep "rm"
+
+### check which command was used to delete file
+	type=SYSCALL msg=audit(1633980915.351:290): arch=c000003e syscall=87 success=yes exit=0 a0=ffffff9c a1=1 a2=1 a3=7fff6d3960f0 items=2 ppid=1234 pid=5678 auid=1000 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 tty=pts1 ses=3 comm="rm" exe="/usr/bin/rm" key="file_deletion_monitor"
+
+
+
