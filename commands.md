@@ -206,4 +206,13 @@ we extract the second column that is the actual text*
 	type=SYSCALL msg=audit(1633980915.351:290): arch=c000003e syscall=87 success=yes exit=0 a0=ffffff9c a1=1 a2=1 a3=7fff6d3960f0 items=2 ppid=1234 pid=5678 auid=1000 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 tty=pts1 ses=3 comm="rm" exe="/usr/bin/rm" key="file_deletion_monitor"
 
 
+## Python Virtual Environment VENV
 
+### Creating VENV
+    python -m venv /path/to/new/virtual/environment
+
+### activating VENV
+    source ada-env/bin/activate
+
+### recursively find word count and sort in directory
+	find . -type f -exec wc -w {} \; | sort -n
