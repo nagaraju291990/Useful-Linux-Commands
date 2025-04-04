@@ -216,3 +216,11 @@ we extract the second column that is the actual text*
 
 ### recursively find word count and sort in directory
 	find . -type f -exec wc -w {} \; | sort -n
+
+-------------------------------------------------------------------------------
+
+### From a file add values of a particular column
+	cut -f3 file.txt |paste -sd+|bc
+
+The above command will extract 3rd column from a tsv and add all those values and sum the value
+
